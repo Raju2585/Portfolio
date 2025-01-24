@@ -20,10 +20,19 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
 import { Typewriter } from 'react-simple-typewriter';
 import logo from '../images/logo.jpg';
 import bg from '../images/bg_2.jpg';
+import img from '../images/img_2.png';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Paper from '@mui/material/Paper';
+import AboutMe from './AboutMe';
 const Props = {
     window: undefined,
 };
-
+const Item = ({ children }) => (
+    <Box sx={{ padding: 2 }}> {/* Customize as needed */}
+        {children}
+    </Box>
+);
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
 
@@ -125,69 +134,87 @@ export function DrawerAppBar(props) {
                     </Drawer>
                 </nav>
             </Box>
-            <Card sx={{ height: '100vh', width: '100vw', position: 'relative' }}>
+            <Card sx={{ height: '100vh', width: '100vw', position: 'relative', marginTop: '5vw' }}>
                 <CardCover>
                     <img
                         src={bg}
                         srcSet={bg}
                         loading="lazy"
                         alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }} // Ensures the image covers the screen
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }}
                     />
                 </CardCover>
-                <CardCover
+                {/* <CardCover
                     sx={{
                         background:
                             'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
                     }}
-                />
-                <CardContent sx={{ justifyContent: 'center', alignItems: 'center', bottom: 16, left: 16 }}>
-                    {/* <Typography level="title-lg" textColor="#fff"
-                        sx={{ fontSize: 70, fontWeight: 'bold', color: 'black' }}
-                    >
-                        HEY, I'M SANTHIRAJU
-                    </Typography> */}
-                    <div
-                        style={{
-                            fontFamily: 'sans-serif',
-                            fontWeight: 800,
-                            fontSize: '70px',
-                            textAlign: 'center',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <span style={{ color: 'black' }}>
-                            <Typewriter
-                                words={["HEY, I'M SANTHIRAJU"]}
-                                loop={0} 
-                                cursor
-                                cursorStyle="_"
-                                typeSpeed={100}
-                                deleteSpeed={30}
-                                delaySpeed={1500}
-                            />
-                        </span>
-                    </div>
-                    <Typography
-                        startDecorator={<LocationOnRoundedIcon />}
-                        textColor="neutral.300"
-                        fontSize={20}
-                        marginTop={3}
-                    >
-                        A Result-Oriented Web Developer building and managing Websites and Web
-                    </Typography>
-                    <Typography
-                        startDecorator={<LocationOnRoundedIcon />}
-                        textColor="neutral.300"
-                        fontSize={20}
-                    >
-                        Applications that leads to the success of the overall product
-                    </Typography>
+                /> */}
+                <CardContent sx={{ justifyContent: 'center', alignItems: 'start' }}>
+                    <Grid container spacing={2} direction="row" alignItems="center">
+                        <Grid item xs={12} sm={6} md={6}>
+                            <Item>
+                                <div
+                                    style={{
+                                        fontFamily: 'sans-serif',
+                                        fontWeight: 800,
+                                        fontSize: '3vw', // Font size adjusts to 5% of the viewport width
+                                        textAlign: 'center',
+                                        display: 'flex',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        paddingLeft: '7vw', // Adjust padding similarly
+                                    }}
+                                >
+                                    <span style={{ color: 'black' }}>
+                                        <Typewriter
+                                            words={["HEY, I'M SANTHIRAJU"]}
+                                            loop={0}
+                                            cursor
+                                            cursorStyle="_"
+                                            typeSpeed={100}
+                                            deleteSpeed={30}
+                                            delaySpeed={1500}
+                                        />
+                                    </span>
+                                </div>
+                                <Typography
+                                    startDecorator={<LocationOnRoundedIcon />}
+                                    textColor="neutral.300"
+                                    fontSize="1.5vw" // Font size adjusts based on viewport width
+                                    paddingLeft="7vw" // Adjust padding similarly
+                                    marginTop={3}
+                                >
+                                    A Result-Oriented Web Developer building and managing Websites and Web
+                                    Applications that leads to the success of the overall product
+                                </Typography>
+                                {/* <Typography
+                                    startDecorator={<LocationOnRoundedIcon />}
+                                    textColor="neutral.300"
+                                    fontSize="1.5vw" // Font size adjusts based on viewport width
+                                    paddingLeft="7vw" // Adjust padding similarly
+                                    marginTop={3}
+                                >
+                                    Applications that leads to the success of the overall product
+                                </Typography> */}
+                            </Item>
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <Item>
+                                <img
+                                    src={img}
+                                    srcSet={img}
+                                    loading="lazy"
+                                    alt=""
+                                    style={{ width: '35vw', height: 'auto', opacity: 0.8 }}
+                                />
+                            </Item>
+                        </Grid>
+                    </Grid>
                 </CardContent>
             </Card>
-
+            {/*Content about me*/}
+            <AboutMe />            
         </>
     );
 }
