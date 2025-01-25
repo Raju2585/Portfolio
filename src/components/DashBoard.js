@@ -24,7 +24,7 @@ import img from '../images/img_2.png';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import AboutMe from './AboutMe';
+import AboutMe from './about/AboutMe';
 const Props = {
     window: undefined,
 };
@@ -141,7 +141,7 @@ export function DrawerAppBar(props) {
                         srcSet={bg}
                         loading="lazy"
                         alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7 }}
                     />
                 </CardCover>
                 {/* <CardCover
