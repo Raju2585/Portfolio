@@ -18,12 +18,12 @@ const skillsList = ["Python", "Java", "C#", "ASP.Net core", "HTML", "CSS", "Bots
 const icons = [
     faPython,
     faJava,
-    null, 
-    null, 
+    null,
+    null,
     faHtml5,
     faCss3,
     faBootstrap,
-    faMdb, 
+    faMdb,
     faReact,
     faGit,
     faGithub,
@@ -44,7 +44,6 @@ const SkillSet = () => {
                     whileHover={{
                         scale: 1.1,
                         rotate: 1.5,
-                        boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
                     }}
                     whileTap={{ scale: 0.95 }}
                 >
@@ -66,16 +65,15 @@ const SkillSet = () => {
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
-                                
                             }}
                         >
-                            <FontAwesomeIcon icon={icons[index]} size="2x"  />
+                            <FontAwesomeIcon icon={icons[index]} size="2x" />
                             <Typography
                                 variant="h6"
                                 component="div"
                                 sx={{
-                                    marginLeft:1,
-                                    fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" }, // Responsive text size
+                                    marginLeft: 1,
+                                    fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
                                 }}>
                                 {skill}
                             </Typography>

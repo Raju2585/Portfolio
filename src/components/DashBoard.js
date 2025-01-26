@@ -12,36 +12,42 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Card from '@mui/joy/Card';
-import CardCover from '@mui/joy/CardCover';
-import CardContent from '@mui/joy/CardContent';
-import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded';
-import { Typewriter } from 'react-simple-typewriter';
-import logo from '../images/logo.jpg';
-import bg from '../images/bg_2.jpg';
-import img from '../images/img_2.png';
-import Grid from '@mui/material/Grid';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import logo from './images/logo.jpg';
 import AboutMe from './about/AboutMe';
-const Props = {
-    window: undefined,
-};
-const Item = ({ children }) => (
-    <Box sx={{ padding: 2 }}> {/* Customize as needed */}
-        {children}
-    </Box>
-);
+import { MotionButton } from './motion components/MotionComponents';
+import { useRef,useState } from 'react';
+import Home from './home/Home';
+
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
 
 export function DrawerAppBar(props) {
-    const { window } = props;
+    const { window:getWindow } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    const aboutRef = useRef(null);
+    const homeRef=useRef(null);
+    const projectsRef=useRef(null);
+    const contactRef=useRef(null);
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
+    };
+    // const scrollToSection = (ref) => {
+    //     if (ref.current) {
+    //         ref.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    //     }
+    // };
+    const scrollToSection = (ref) => {
+        if (ref?.current) {
+            const navbar = document.querySelector('.appbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
+            const elementPosition = ref.current.offsetTop - navbarHeight-20;
+            window.scrollTo({
+                top: elementPosition,
+                behavior: 'smooth',
+            });
+        } else {
+            console.error("Ref is not attached properly.");
+        }
     };
 
     const drawer = (
@@ -62,13 +68,16 @@ export function DrawerAppBar(props) {
         </Box>
     );
 
-    const container = window !== undefined ? () => window().document.body : undefined;
+    const container = getWindow !== undefined ? () => getWindow().document.body : undefined;
 
     return (
         <>
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
-                <AppBar component="nav" sx={{ backgroundColor: 'white', color: 'black' }}>
+                <AppBar
+                    className='appbar'
+                    component="nav"
+                    sx={{ backgroundColor: 'white', color: 'black' }}>
                     <Toolbar>
                         <IconButton
                             color="inherit"
@@ -79,12 +88,18 @@ export function DrawerAppBar(props) {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Button
-                            variant="h6"
-                            component="div"
+                        <MotionButton
+                            initial={{ y: -250 }}
+                            animate={{ y: 0 }}
+                            transition={{
+                                type: "spring",
+                                stiffness: 75,
+                                delay:  0, 
+                            }}
                             sx={{
                                 flexGrow: 1,
                                 fontSize: 18,
+                                color: 'black',
                                 display: { xs: 'none', sm: 'none', md: 'flex' },
                                 alignItems: 'center',
                                 justifyContent: 'flex-start',
@@ -105,13 +120,43 @@ export function DrawerAppBar(props) {
                                 }}
                             />
                             SANTHIRAJU MERLA
-                        </Button>
-
+                        </MotionButton>
                         <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-                            {navItems.map((item) => (
-                                <Button key={item} sx={{ color: 'black', fontSize: 17, fontWeight: 'bold', margin: 3 }}>
+                            {navItems.map((item,index) => (
+                                <MotionButton
+                                    key={item}
+                                    initial={{ y: -250 }}
+                                    animate={{ y: 0 }}
+                                    onClick={() =>{
+                                        switch(item)
+                                        {
+                                            case "Home":
+                                                scrollToSection(homeRef);
+                                                break;
+                                            case "About":
+                                                scrollToSection(aboutRef);   
+                                                break;
+                                            case "Projects":
+                                                scrollToSection(projectsRef);
+                                                break;
+                                            case "Contact":
+                                                scrollToSection(contactRef);
+                                                break;
+                                            default:
+                                                scrollToSection("home");
+                                                break;
+                                        }
+                                    }}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 75,
+                                        delay: index===0?0.2:index*0.3, 
+                                    }}
+                                    sx={{
+                                        color: 'black', fontSize: 17, fontWeight: 'bold', margin: 3
+                                    }}>
                                     {item}
-                                </Button>
+                                </MotionButton>
                             ))}
                         </Box>
                     </Toolbar>
@@ -134,87 +179,13 @@ export function DrawerAppBar(props) {
                     </Drawer>
                 </nav>
             </Box>
-            <Card sx={{ height: '100vh', width: '100vw', position: 'relative', marginTop: '5vw' }}>
-                <CardCover>
-                    <img
-                        src={bg}
-                        srcSet={bg}
-                        loading="lazy"
-                        alt=""
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.7 }}
-                    />
-                </CardCover>
-                {/* <CardCover
-                    sx={{
-                        background:
-                            'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
-                    }}
-                /> */}
-                <CardContent sx={{ justifyContent: 'center', alignItems: 'start' }}>
-                    <Grid container spacing={2} direction="row" alignItems="center">
-                        <Grid item xs={12} sm={6} md={6}>
-                            <Item>
-                                <div
-                                    style={{
-                                        fontFamily: 'sans-serif',
-                                        fontWeight: 800,
-                                        fontSize: '3vw', // Font size adjusts to 5% of the viewport width
-                                        textAlign: 'center',
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        paddingLeft: '7vw', // Adjust padding similarly
-                                    }}
-                                >
-                                    <span style={{ color: 'black' }}>
-                                        <Typewriter
-                                            words={["HEY, I'M SANTHIRAJU"]}
-                                            loop={0}
-                                            cursor
-                                            cursorStyle="_"
-                                            typeSpeed={100}
-                                            deleteSpeed={30}
-                                            delaySpeed={1500}
-                                        />
-                                    </span>
-                                </div>
-                                <Typography
-                                    startDecorator={<LocationOnRoundedIcon />}
-                                    textColor="neutral.300"
-                                    fontSize="1.5vw" // Font size adjusts based on viewport width
-                                    paddingLeft="7vw" // Adjust padding similarly
-                                    marginTop={3}
-                                >
-                                    A Result-Oriented Web Developer building and managing Websites and Web
-                                    Applications that leads to the success of the overall product
-                                </Typography>
-                                {/* <Typography
-                                    startDecorator={<LocationOnRoundedIcon />}
-                                    textColor="neutral.300"
-                                    fontSize="1.5vw" // Font size adjusts based on viewport width
-                                    paddingLeft="7vw" // Adjust padding similarly
-                                    marginTop={3}
-                                >
-                                    Applications that leads to the success of the overall product
-                                </Typography> */}
-                            </Item>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={6}>
-                            <Item>
-                                <img
-                                    src={img}
-                                    srcSet={img}
-                                    loading="lazy"
-                                    alt=""
-                                    style={{ width: '35vw', height: 'auto', opacity: 0.8 }}
-                                />
-                            </Item>
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card>
+            <div ref={homeRef}>
+                <Home/>
+            </div>
             {/*Content about me*/}
-            <AboutMe />            
+            <div ref={aboutRef}>
+                <AboutMe/>
+            </div>
         </>
     );
 }

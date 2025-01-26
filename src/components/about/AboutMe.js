@@ -5,10 +5,9 @@ import { Button, Container } from '@mui/material';
 import '@fontsource/roboto';
 import SkillSet from './SkillsSet';
 
-let skillsList = ["Python", "Java", "C#", ".Net core", "HTML", "CSS", "Botstrap", "Material UI", "React", "Git", "Github"]
 export default function AboutMe() {
     return (
-        <Container sx={{ marginY: '4vw' }}>
+        <Container sx={{ marginY: '7vw' }}>
             <Grid container direction='row'>
                 <Grid size={{ xs: 12, sm: 12, md: 12 }}>
                     <Box display='flex' flexDirection='column' alignItems='center'>
@@ -95,7 +94,7 @@ export default function AboutMe() {
                         >
                             My Skills
                         </Typography>
-                        <SkillSet />
+                        <SkillSet/>
                     </Box>
                 </Grid>
             </Grid>
