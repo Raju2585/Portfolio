@@ -7,7 +7,7 @@ import SkillSet from './SkillsSet';
 
 export default function AboutMe() {
     return (
-        <Container sx={{ marginY: '7vw' }}>
+        <Container sx={{ marginY: '7vw',marginX:'5vw' }}>
             <Grid container direction='row'>
                 <Grid size={{ xs: 12, sm: 12, md: 12 }}>
                     <Box display='flex' flexDirection='column' alignItems='center'>
@@ -59,7 +59,7 @@ export default function AboutMe() {
                                 paddingY: 1
                             }}
                         >
-                            I'm a Full-Stack Web Developer with a passion for building and managing both the Front-end and Back-end of Web Applications. While I’m a fresher, I have worked on several projects that showcase my skills in creating functional and user-friendly applications. You can explore some of my work in the Projects section.
+                            I'm a Full-Stack Web Developer with a passion for building and managing both the Front-end and Back-end of Web Applications. I have worked on several projects that showcase my skills in creating functional and user-friendly applications. You can explore some of my work in the Projects section.
                         </Typography>
                         <Typography
                             variant='body1'

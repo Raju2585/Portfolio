@@ -14,7 +14,7 @@ import {
     faMdb,
 } from "@fortawesome/free-brands-svg-icons";
 
-const skillsList = ["Python", "Java", "C#", "ASP.Net core", "HTML", "CSS", "Botstrap", "Material UI", "React", "Git", "Github"]
+const skillsList = ["Python", "Java", "C#", "ASP.Net core", "HTML", "CSS", "Botstrap", "React", "React", "Git", "Github"]
 const icons = [
     faPython,
     faJava,
@@ -36,6 +36,9 @@ const SkillSet = () => {
                 gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
                 gap: 3,
                 paddingX: '5vw',
+                '@media (min-width: 960px)': {
+                    gridTemplateColumns: 'repeat(3, 1fr)',  
+                },
             }}
         >
             {skillsList.map((skill, index) => (
@@ -73,7 +76,7 @@ const SkillSet = () => {
                                 component="div"
                                 sx={{
                                     marginLeft: 1,
-                                    fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
+                                    fontSize: { xs: "1rem", sm: "1.2rem", md: "1.2rem" },
                                 }}>
                                 {skill}
                             </Typography>
