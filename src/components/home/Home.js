@@ -10,13 +10,13 @@ import { motion } from "framer-motion";
 import Box from '@mui/material/Box';
 import { MotionTypography } from '../motion components/MotionComponents';
 const Item = ({ children }) => (
-    <Box sx={{ padding: 2 }}> 
+    <Box sx={{ padding: 2 }}>
         {children}
     </Box>
 );
-export default function Home(){
+export default function Home() {
     return (
-        <Card sx={{ height: '100vh', width: '100vw', position: 'relative', marginTop: '5vw' }}>
+        <Card sx={{ height: '100vh', width: '100vw', position: 'relative', marginTop: '1vw' }}>
             <CardCover>
                 <img
                     src={bg}
@@ -30,11 +30,11 @@ export default function Home(){
                 <Grid container spacing={2} direction="row" alignItems="center">
                     <Grid item xs={12} sm={6} md={6}>
                         <Item>
-                            <div
-                                style={{
+                            <Box
+                                sx={{
                                     fontFamily: 'sans-serif',
                                     fontWeight: 800,
-                                    fontSize: '3vw',
+                                    fontSize: { xs: '6vw', sm: '5vw', md: '4vw', lg: '3vw' },
                                     textAlign: 'center',
                                     display: 'flex',
                                     justifyContent: 'center',
@@ -42,7 +42,13 @@ export default function Home(){
                                     paddingLeft: '7vw',
                                 }}
                             >
-                                <span style={{ color: 'black' }}>
+                                <motion.span
+                                    style={{ color: 'black' }}
+                                    initial={{}}
+                                    animate={{}}
+                                    transition={{
+                                    }}
+                                >
                                     <Typewriter
                                         words={["HEY, I'M SANTHIRAJU"]}
                                         loop={0}
@@ -52,44 +58,46 @@ export default function Home(){
                                         deleteSpeed={30}
                                         delaySpeed={1500}
                                     />
-                                </span>
-                            </div>
+                                </motion.span>
+                            </Box>
                             <MotionTypography
-                                startDecorator={<LocationOnRoundedIcon />}
                                 textColor="neutral.300"
-                                fontSize="1.5vw"
+                                sx={{
+                                    fontSize: { xs: '3vw', sm: '2.5vw', md: '2vw', lg: '1.3vw' }
+                                }}
                                 paddingLeft="7vw"
                                 marginTop={3}
-                                initial={{ x: '-100vw' }}
-                                animate={{ x: 0 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
                                 transition={{
-                                    type: 'spring',
-                                    stiffness: 80,
-                                    duration: 0.4
+                                    duration: 3,
+                                    delay: 1
                                 }}
                             >
                                 A Result-Oriented Web Developer building and managing Websites and Web
-                                Applications that leads to the success of the overall product
+                                Applications that leads to the success of the overall product.
                             </MotionTypography>
                         </Item>
                     </Grid>
                     <Grid item xs={12} sm={6} md={6}>
-                        <Item>
+                        <Box
+                        >
                             <motion.img
                                 src={img}
                                 srcSet={img}
                                 loading="lazy"
                                 alt=""
-                                style={{ width: '35vw', height: 'auto', opacity: 0.8 }}
-                                initial={{ x: '100vw' }}
-                                animate={{ x: 0 }}
+                                style={{ maxWidth: '100%', height: 'auto' ,opacity:0.8}} 
+                                initial={{ width: '5vw' }} 
+                                animate={{width:'70%'}}
                                 transition={{
                                     type: 'spring',
-                                    stiffness: 80,
+                                    stiffness: 100,
                                     duration: 0.4
                                 }}
                             />
-                        </Item>
+                        </Box>
+
                     </Grid>
                 </Grid>
             </CardContent>

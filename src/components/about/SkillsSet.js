@@ -36,8 +36,17 @@ const SkillSet = () => {
                 gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
                 gap: 3,
                 paddingX: '5vw',
-                '@media (min-width: 960px)': {
+                '@media (min-width: 400px)': {
                     gridTemplateColumns: 'repeat(3, 1fr)',  
+                },
+                '@media (min-width: 900px)': {
+                    gridTemplateColumns: 'repeat(3, 1fr)',  
+                },                
+                '@media (min-width: 1100px)': {
+                    gridTemplateColumns: 'repeat(4, 1fr)',  
+                },
+                '@media (min-width: 1400px)': {
+                    gridTemplateColumns: 'repeat(5, 1fr)',  
                 },
             }}
         >

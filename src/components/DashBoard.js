@@ -17,6 +17,7 @@ import AboutMe from './about/AboutMe';
 import { MotionButton } from './motion components/MotionComponents';
 import { useRef,useState } from 'react';
 import Home from './home/Home';
+import Project from './projects/projects';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
@@ -183,7 +184,10 @@ export function DrawerAppBar(props) {
                 <Home/>
             </div>
             {/*Content about me*/}
-            <div ref={aboutRef}>
+            <div 
+                ref={aboutRef}
+                style={{display:'flex',justifyContent:'center',alignItems:'center'}}
+                >
                 <AboutMe/>
             </div>
         </>

@@ -1,15 +1,15 @@
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import '@fontsource/roboto';
 import SkillSet from './SkillsSet';
 
 export default function AboutMe() {
     return (
-        <Container sx={{ marginY: '7vw',marginX:'5vw' }}>
+        <Container maxWidth="100vw" sx={{  marginX:'5vw',marginY: '7vw'}}>
             <Grid container direction='row'>
-                <Grid size={{ xs: 12, sm: 12, md: 12 }}>
+                <Grid size={{ xs: 12, sm: 12, md: 12,lg:12 }}>
                     <Box display='flex' flexDirection='column' alignItems='center'>
                         <Typography
                             variant="h3"
@@ -18,7 +18,7 @@ export default function AboutMe() {
                             sx={{
                                 fontFamily: 'Roboto, Arial, sans-serif',
                                 fontWeight: 'bold',
-                                fontSize: { xs: '6vw', sm: '5vw', md: '4vw' }
+                                fontSize: { xs: '6vw', sm: '5vw', md: '4vw',lg:'3vw' }
                             }}
                         >
                             About Me
@@ -26,7 +26,7 @@ export default function AboutMe() {
                         <Typography
                             variant="body1"
                             sx={{
-                                fontSize: { xs: '3.5vw', sm: '2.5vw', md: '1.5vw' },
+                                fontSize: { xs: '3.5vw', sm: '2.5vw', md: '1.3vw' },
                                 paddingLeft: { xs: '5vw', sm: '10vw', md: '15vw' },
                                 paddingRight: { xs: '5vw', sm: '10vw', md: '15vw' },
                                 textAlign: 'center',
@@ -45,7 +45,7 @@ export default function AboutMe() {
                             sx={{
                                 fontFamily: 'Roboto, Arial, sans-serif',
                                 fontWeight: 'bold',
-                                fontSize: { xs: '5vw', sm: '4vw', md: '3vw' },
+                                fontSize: { xs: '5vw', sm: '4vw', md: '3vw',lg:'2vw' },
                                 paddingTop: 5,
                                 paddingBottom: 3
                             }}
@@ -86,7 +86,7 @@ export default function AboutMe() {
                             sx={{
                                 fontFamily: 'Roboto, Arial, sans-serif',
                                 fontWeight: 'bold',
-                                fontSize: { xs: '5vw', sm: '4vw', md: '3vw' },
+                                fontSize: { xs: '5vw', sm: '4vw', md: '3vw',lg:'2vw' },
                                 paddingTop: 5,
                                 paddingBottom:5,
                                 paddingLeft:'5vw'
