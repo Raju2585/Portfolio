@@ -5,7 +5,9 @@ import { DrawerAppBar } from './components/DashBoard';
 function App() {
   return (
     <Provider store={store}>
-      <DrawerAppBar />
+      <div>
+        <DrawerAppBar />
+      </div>
     </Provider>
   );
 }

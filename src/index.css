@@ -1,13 +1,57 @@
-body {
+/* Reset default margin and padding */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define Theme Colors */
+:root {
+  --primary: #050816;
+  --secondary: #aaa6c3;
+  --tertiary: #151030;
+  --black-100: #100d25;
+  --black-200: #090325;
+  --white-100: #f3f3f3;
+  --shadow-card: 0px 35px 120px -15px #211e35;
+  --hero-bg: url('./components/images/herobg.png');
+}
+
+/* Apply Global Styles */
+body {
+  background-color: var(--primary);
+  color: var(--white-100);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Code blocks */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Utility classes for colors */
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-tertiary {
+  color: var(--tertiary);
+}
+
+.bg-black-100 {
+  background-color: var(--black-100);
+}
+
+.bg-black-200 {
+  background-color: var(--black-200);
+}
+
+/* Hero Section Background */
+.bg-hero {
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center;
 }
