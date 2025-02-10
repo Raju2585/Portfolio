@@ -13,7 +13,6 @@ import { useRef, useState, useEffect } from 'react';
 import Home from './Home';
 import Project from './Projects';
 import ContactForm from './ContactForm';
-import CanvasLoader from './canvas/Loader';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
