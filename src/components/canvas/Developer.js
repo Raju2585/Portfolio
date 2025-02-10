@@ -24,7 +24,7 @@ export function Developer({animationName,...props}) {
   idle[0].name="idle";
   clapping[0].name="clapping";
 
-  const {actions}=useAnimations([salute[0],victory[0],layingIdle[0],happyIdle[0],clapping[0]],group);
+  const {actions}=useAnimations([salute[0],victory[0],layingIdle[0],happyIdle[0],clapping[0],idle[0]],group);
 
   useEffect(()=>{
     if(actions[animationName])

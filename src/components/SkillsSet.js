@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPython,
@@ -37,28 +37,40 @@ const SkillSet = () => {
                 gap: 3,
                 paddingX: '5vw',
                 '@media (min-width: 400px)': {
-                    gridTemplateColumns: 'repeat(3, 1fr)',  
+                    gridTemplateColumns: 'repeat(3, 1fr)',
                 },
                 '@media (min-width: 900px)': {
-                    gridTemplateColumns: 'repeat(3, 1fr)',  
+                    gridTemplateColumns: 'repeat(3, 1fr)',
                 },
                 '@media (min-width: 1400px)': {
-                    gridTemplateColumns: 'repeat(5, 1fr)',  
+                    gridTemplateColumns: 'repeat(5, 1fr)',
                 },
             }}
         >
             {skillsList.map((skill, index) => (
                 <motion.div
                     key={skill}
+                    initial={{ opacity: 0, x: 100}}
+                    whileInView={{
+                        opacity: 1,
+                        x: 0,
+                        transition:
+                        {
+                            type:'spring',
+                            delay:index*0.2,
+                            ease: "easeOut"
+                        }
+                    }}
+                    viewport={{ once: false, amount: 0.5 }}
                     whileHover={{
                         scale: 1.1,
                         rotate: 1.5,
-                        borderRadius:'20px',
-                        boxShadow:'0px 0px 19px #ceabeb',
-                        textShadow:'0px 0px 8px #ceabeb'
+                        borderRadius: '20px',
+                        boxShadow: '0px 0px 19px #ceabeb',
+                        textShadow: '0px 0px 8px #ceabeb'
                     }}
                     whileTap={{ scale: 0.95 }}
-                    style={{borderRadius:'20px'}}
+                    style={{ borderRadius: '20px' }}
                 >
                     <Card
                         sx={{

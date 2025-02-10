@@ -69,7 +69,14 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link }
 
 const Project = () => {
   return (
-    <Box maxWidth="100vw" >
+    <Box
+      sx={{
+        width: "100vw",
+        paddingX: "5vw", 
+        paddingY: "4vw",
+        boxSizing: "border-box",
+      }}
+    >
       <motion.div variants={textVariant()}>
         <Typography variant="subtitle1" sx={{ color: "#aaa6c3" }}>
           My work
@@ -85,7 +92,8 @@ const Project = () => {
           </Typography>
         </motion.p>
       </Box>
-      <Grid container spacing={4} sx={{ mt: 5 }}>
+      {/* Ensure Grid stretches across the entire screen width */}
+      <Grid container spacing={4} sx={{ mt: 5, width: "100%" }}>
         {projects.map((project, index) => (
           <Grid item xs={12} sm={6} md={4} key={`project-${index}`}>
             <ProjectCard index={index} {...project} />
@@ -95,5 +103,6 @@ const Project = () => {
     </Box>
   );
 };
+
 
 export default SectionWrapper(Project, "");

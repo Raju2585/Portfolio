@@ -4,29 +4,42 @@ import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import '@fontsource/roboto';
 import SkillSet from './SkillsSet';
-import {  motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { MotionTypography } from './motion components/MotionComponents';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 export default function AboutMe() {
+    const textVariants = {
+        hidden: { opacity: 0, y: 100, },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
+    };
+
     return (
         <Container maxWidth="100vw" sx={{ marginX: '5vw', marginY: '7vw', position: 'relative', overflow: 'hidden' }}>
             <Grid container direction='row'>
                 <Grid size={{ xs: 12, sm: 12, md: 12, lg: 12 }}>
                     <Box display='flex' flexDirection='column' alignItems='center'>
-                        <Typography
-                            variant="h3"
-                            fontSize='4vw'
-                            gutterBottom
-                            sx={{
-                                fontFamily: 'Roboto, Arial, sans-serif',
-                                // color:'#8925db',
-                                color: 'white',
-                                fontSize: { xs: '6vw', sm: '5vw', md: '4vw', lg: '3vw' },
-                                fontWeight: 'bold'
+                        <MotionTypography
+                            variants={textVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.1 }}
+                            style={{
+                                fontSize: "4vw",
+                                fontWeight: "bold",
+                                color: "white",
+                                textAlign: "center",
                             }}
                         >
                             About Me
-                        </Typography>
-                        <Typography
+                        </MotionTypography>
+
+
+                        <MotionTypography
                             variant="body1"
+                            variants={textVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.1 }}
                             sx={{
                                 fontSize: { xs: '3.5vw', sm: '2.5vw', md: '1.3vw' },
                                 fontFamily: 'Roboto, Arial, sans-serif',
@@ -38,18 +51,21 @@ export default function AboutMe() {
                             gutterBottom
                         >
                             Here you will find more information about me, what I do, and my current skills mostly in terms of programming and technology.
-                        </Typography>
+                        </MotionTypography>
 
                     </Box>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                     <Box>
-                        <Typography
+                        <MotionTypography
                             variant='h4'
+                            variants={textVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.1 }}
                             sx={{
                                 fontFamily: 'Roboto, Arial, sans-serif',
                                 fontWeight: 'bold',
-                                // color:'#8925db',
                                 color: 'white',
                                 fontSize: { xs: '5vw', sm: '4vw', md: '3vw', lg: '2vw' },
                                 paddingTop: 5,
@@ -57,9 +73,13 @@ export default function AboutMe() {
                             }}
                         >
                             Get to know me!
-                        </Typography>
-                        <Typography
+                        </MotionTypography>
+                        <MotionTypography
                             variant='body1'
+                            variants={textVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.1 }}
                             sx={{
                                 fontSize: { xs: '3vw', sm: '2vw', md: '1.2vw' },
                                 fontFamily: 'Roboto, Arial, sans-serif',
@@ -67,8 +87,8 @@ export default function AboutMe() {
                                 paddingY: 1
                             }}
                         >
-                           I'm a Full-Stack Web Developer passionate about building and managing web applications. I enjoy creating user-friendly solutions, staying updated with the latest trends, and sharing my knowledge with the developer community. Check out my projects in the Projects section, and connect with me on LinkedIn or Instagram. I'm open to job opportunities where I can apply my skills and grow—let's connect!
-                        </Typography>
+                            I'm a Full-Stack Web Developer passionate about building and managing web applications. I enjoy creating user-friendly solutions, staying updated with the latest trends, and sharing my knowledge with the developer community. Check out my projects in the Projects section, and connect with me on LinkedIn or Instagram. I'm open to job opportunities where I can apply my skills and grow—let's connect!
+                        </MotionTypography>
                         {/* <Typography
                             variant='body1'
                             sx={{
@@ -93,8 +113,12 @@ export default function AboutMe() {
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 6 }}>
                     <Box>
-                        <Typography
+                        <MotionTypography
                             variant='h4'
+                            variants={textVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: false, amount: 0.1 }}
                             sx={{
                                 fontFamily: 'Roboto, Arial, sans-serif',
                                 fontWeight: 'bold',
@@ -107,7 +131,7 @@ export default function AboutMe() {
                             }}
                         >
                             My Skills
-                        </Typography>
+                        </MotionTypography>
                         <SkillSet />
                     </Box>
                 </Grid>

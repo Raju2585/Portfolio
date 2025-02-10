@@ -10,9 +10,11 @@ import logo from './images/logo.jpg';
 import AboutMe from './AboutMe';
 import { MotionButton } from './motion components/MotionComponents';
 import { useRef, useState, useEffect } from 'react';
-import Home from './home/Home';
+import Home from './Home';
 import Project from './Projects';
 import shadows from '@mui/material/styles/shadows';
+import ContactForm from './ContactForm';
+import StarsCanvas from './canvas/Stars';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
@@ -53,12 +55,14 @@ export function DrawerAppBar(props) {
         if (aboutRef.current) {
             observer.observe(aboutRef.current);
             observer.observe(projectsRef.current);
+            observer.observe(contactRef.current);
         }
 
         return () => {
             if (aboutRef.current) {
                 observer.unobserve(aboutRef.current);
                 observer.unobserve(projectsRef.current);
+                observer.unobserve(contactRef.current);
             }
         };
     }, []);
@@ -96,6 +100,7 @@ export function DrawerAppBar(props) {
                                 type: 'spring',
                                 stiffness: 75,
                                 delay: 0,
+                                ease: "easeOut"
                             }}
                             sx={{
                                 flexGrow: 1,
@@ -150,6 +155,7 @@ export function DrawerAppBar(props) {
                                     transition={{
                                         type: 'spring',
                                         stiffness: 75,
+                                        ease: "easeOut",
                                         delay: index === 0 ? 0.2 : index * 0.3,
                                     }}
                                     sx={{
@@ -179,7 +185,6 @@ export function DrawerAppBar(props) {
                             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                         }}
                     >
-                        {/* Drawer content */}
                     </Drawer>
                 </nav>
             </Box>
@@ -194,6 +199,8 @@ export function DrawerAppBar(props) {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    position: "relative", 
+                    zIndex: 1
                 }}
             >
                 <AboutMe />
@@ -201,11 +208,19 @@ export function DrawerAppBar(props) {
             <div
                 ref={projectsRef}
                 style={{
+                    display:'flex',
+                    alignItems:'center',
                     backgroundColor: '#050816',
+                    position: "relative", 
+                    zIndex: 1
                 }}
             >
                 <Project />
             </div>
+            <div ref={contactRef} style={{   position: "relative", width: "100%", backgroundColor: "#050816" }}>
+                <ContactForm />
+            </div>
+
         </>
     );
 }
