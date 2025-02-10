@@ -1,11 +1,20 @@
 import React, { Suspense, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF, useProgress } from "@react-three/drei";
-
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader';
 import CanvasLoader from "./Loader";
 
 const Earth = () => {
-  const earth = useGLTF("/models/scene.glb");
+  const gl=useThree((state)=>state.gl);
+  const earth = useGLTF("/models/scene_ktx2.glb",
+    undefined,undefined,(loader) => {
+      const ktx2Loader = new KTX2Loader();
+      ktx2Loader.setTranscoderPath("https://cdn.jsdelivr.net/gh/pmndrs/drei-assets/basis/");
+
+      ktx2Loader.detectSupport(gl);
+      loader.setKTX2Loader(ktx2Loader);
+    }
+  );
   console.log(earth);
 
   return (
@@ -44,4 +53,5 @@ const EarthCanvas = ({onLoaded}) => {
   );
 };
 
+useGLTF.preload("/models/scene_ktx2.glb");
 export default EarthCanvas;

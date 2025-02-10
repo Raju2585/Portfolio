@@ -1,15 +1,23 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF, useProgress } from "@react-three/drei";
-
+import { KTX2Loader } from 'three/examples/jsm/loaders/KTX2Loader';
 import CanvasLoader from "./Loader";
 
 const Computers = ({ isMobile }) => {
-  const computer = useGLTF("./desktop_pc/scene.gltf");
+  const gl = useThree((state) => state.gl);
+  const computer = useGLTF("/desktop_pc/scene_ktx2.gltf",
+    undefined, undefined, (loader) => {
+      const ktx2Loader = new KTX2Loader();
+      ktx2Loader.setTranscoderPath("https://cdn.jsdelivr.net/gh/pmndrs/drei-assets/basis/");
+
+      ktx2Loader.detectSupport(gl);
+      loader.setKTX2Loader(ktx2Loader);
+    });
 
   return (
     <mesh >
-        <ambientLight intensity={2.4}/>
+      <ambientLight intensity={2.4} />
       {/* <hemisphereLight intensity={0.15} groundColor='black' /> */}
       <spotLight
         position={[-20, 50, 10]}
@@ -55,7 +63,7 @@ const ComputersCanvas = () => {
       dpr={[1, 2]}
       camera={{ position: [20, 3, 7], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      style={{position:'relative',zIndex:1}}
+      style={{ position: 'relative', zIndex: 1 }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
@@ -71,5 +79,5 @@ const ComputersCanvas = () => {
   );
 };
 
-useGLTF.preload("./desktop_pc/scene.gltf");
+useGLTF.preload("/desktop_pc/scene_ktx2.gltf");
 export default ComputersCanvas;

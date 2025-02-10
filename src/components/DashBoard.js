@@ -13,6 +13,7 @@ import { useRef, useState, useEffect } from 'react';
 import Home from './Home';
 import Project from './Projects';
 import ContactForm from './ContactForm';
+import { motion } from 'framer-motion';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
@@ -43,12 +44,13 @@ export function DashBoard(props) {
     };
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
+        let timeout;
+        const observer = new IntersectionObserver(([entry]) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
                 setScrolled(!entry.isIntersecting);
-            },
-            { threshold: 0.5 }
-        );
+            }, 100); // Debounce to 100ms
+        }, { threshold: 0.5 });
 
         if (aboutRef.current) {
             observer.observe(aboutRef.current);
@@ -57,16 +59,17 @@ export function DashBoard(props) {
         }
 
         return () => {
-            if (aboutRef.current) {
-                observer.unobserve(aboutRef.current);
-                observer.unobserve(projectsRef.current);
-                observer.unobserve(contactRef.current);
-            }
+            observer.disconnect();
+            clearTimeout(timeout);
         };
     }, []);
 
-    const container = getWindow !== undefined ? () => getWindow().document.body : undefined;
 
+    const container = getWindow !== undefined ? () => getWindow().document.body : undefined;
+    const navVariants = {
+        hidden: { opacity: 0, y: -50 },
+        visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } }
+    };
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -92,12 +95,12 @@ export function DashBoard(props) {
                             <MenuIcon />
                         </IconButton>
                         <MotionButton
-                            initial={{ y: -250 }}
+                            initial={{ y: -50 }}
                             animate={{ y: 0 }}
                             transition={{
                                 type: 'spring',
-                                stiffness: 75,
-                                delay: 0,
+                                stiffness: 100, 
+                                damping: 15, 
                                 ease: "easeOut"
                             }}
                             sx={{
@@ -111,9 +114,11 @@ export function DashBoard(props) {
                                 textTransform: 'none',
                                 padding: 0,
                                 fontWeight: 'bold',
+                                willChange: 'transform', 
+                                transform: 'translateZ(0)',
                             }}
                         >
-                            <img
+                            {/* <img
                                 src={logo}
                                 alt="Logo"
                                 style={{
@@ -122,14 +127,18 @@ export function DashBoard(props) {
                                     border: '1px solid #000',
                                     borderRadius: '50%',
                                 }}
-                            />
+                            /> */}
                             SANTHIRAJU MERLA
                         </MotionButton>
-                        <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
+                        <Box
+                            sx={{
+                                display: { xs: 'none', sm: 'none', md: 'block' }, willChange: 'transform', // Forces GPU rendering
+                                transform: 'translateZ(0)',
+                            }}>
                             {navItems.map((item, index) => (
                                 <MotionButton
                                     key={item}
-                                    initial={{ y: -250 }}
+                                    initial={{ y: -200 }}
                                     animate={{ y: 0 }}
                                     onClick={() => {
                                         switch (item) {
@@ -152,15 +161,19 @@ export function DashBoard(props) {
                                     }}
                                     transition={{
                                         type: 'spring',
-                                        stiffness: 75,
+                                        stiffness: 100, 
+                                        damping: 15, 
                                         ease: "easeOut",
-                                        delay: index === 0 ? 0.2 : index * 0.3,
+                                        duration:0.5
+                                        //delay: index === 0 ? 0.2 : index * 0.3,
                                     }}
                                     sx={{
                                         color: 'white',
                                         fontSize: 17,
                                         fontWeight: 'bold',
                                         margin: 3,
+                                        willChange: 'transform', 
+                                        transform: 'translateZ(0)',
                                     }}
                                 >
                                     {item}
@@ -187,7 +200,7 @@ export function DashBoard(props) {
                 </nav>
             </Box>
             <div ref={homeRef}>
-                <Home/>
+                <Home />
             </div>
             {/* About Me Section */}
             <div
@@ -216,7 +229,7 @@ export function DashBoard(props) {
                 <Project />
             </div>
             <div ref={contactRef} style={{ position: "relative", width: "100%", backgroundColor: "#050816", display: 'flex', }}>
-                <ContactForm/>
+                <ContactForm />
             </div>
         </>
     );
