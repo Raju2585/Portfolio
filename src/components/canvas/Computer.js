@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, Preload, useGLTF, useProgress } from "@react-three/drei";
 
 import CanvasLoader from "./Loader";
 
@@ -71,4 +71,5 @@ const ComputersCanvas = () => {
   );
 };
 
+useGLTF.preload("./desktop_pc/scene.gltf");
 export default ComputersCanvas;

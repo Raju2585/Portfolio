@@ -1,7 +1,7 @@
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './components/store/store';
-import { DrawerAppBar } from './components/DashBoard';
+import { DashBoard, DrawerAppBar } from './components/DashBoard';
 import StarsCanvas from './components/canvas/Stars';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         >
           <StarsCanvas />
         </div>
-        <DrawerAppBar />
+        <DashBoard/>
       </div>
     </Provider>
   );

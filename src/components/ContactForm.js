@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { TextField, Button, Box, Typography, Paper, Grid2 } from "@mui/material";
+import { TextField, Button, Box, Typography, Paper, Grid } from "@mui/material";
 import EarthCanvas from "./canvas/EarthCanvas";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
@@ -9,11 +9,7 @@ import StarsCanvas from "./canvas/Stars";
 
 const ContactForm = () => {
     const formRef = useRef();
-    const [form, setForm] = useState({
-        name: "",
-        email: "",
-        message: "",
-    });
+    const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
@@ -51,25 +47,47 @@ const ContactForm = () => {
                 }
             );
     };
+    const MemoizedEarthCanvas = useMemo(() => <EarthCanvas />, []);
+    const MemoizedStarsCanvas = useMemo(() => <StarsCanvas />, []);
 
     return (
-        <div style={{ position: "relative", width: "100%", backgroundColor: "transparent" }}>
+        <div style={{ position: "relative", width: "100vw", height: "100vh", backgroundColor: "transparent" }}>
             <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: -1 }}>
-                <StarsCanvas />
+                {MemoizedStarsCanvas}
             </div>
 
-            <Box sx={{
-            }}>
-                <Grid2 paddingX={'7vw'} container direction="row">
-                    <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
-                        <motion.div variants={slideIn("left", "tween", 0.2, 1)}>
-                            <Paper sx={{
-                                flex: 0.8,
-                                bgcolor: "rgba(16, 13, 37, 0.85)",
-                                p: 2,
-                                borderRadius: 2
-                            }}>
-
+            <Box
+                sx={{
+                    height: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingX: "5vw",
+                }}
+            >
+                <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                        display: "flex",
+                        flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" },
+                        justifyContent: "center",
+                        alignItems: "center",
+                        maxWidth: "1200px",
+                        width: "100%",
+                    }}
+                >
+                    {/* Contact Form */}
+                    <Grid item xs={12} sm={12} md={6} lg={6} sx={{ display: "flex", justifyContent: "center" }}>
+                        <motion.div variants={useMemo(()=>slideIn("left", "tween", 0.2, 1))} style={{ width: "100%", maxWidth: "450px" }}>
+                            <Paper
+                                sx={{
+                                    bgcolor: "rgba(16, 13, 37, 0.85)",
+                                    p: 3,
+                                    borderRadius: 2,
+                                    width: "100%",
+                                }}
+                            >
                                 <Typography sx={{ fontSize: 14, textTransform: "uppercase", color: "#aaa6c3", letterSpacing: "wider" }}>
                                     Get in touch
                                 </Typography>
@@ -90,35 +108,39 @@ const ContactForm = () => {
                                             borderRadius: 2,
                                             color: "white",
                                             fontWeight: "bold",
-                                            transition: "box-shadow 0.3s ease-in-out", 
+                                            transition: "box-shadow 0.3s ease-in-out",
                                             "&:hover": {
-                                                boxShadow: "0px 4px 10px rgba(255, 165, 0, 0.5)" 
-                                            }
+                                                boxShadow: "0px 4px 10px rgba(255, 165, 0, 0.5)",
+                                            },
                                         }}
                                     >
                                         {loading ? "Sending..." : "Send"}
                                     </Button>
-
                                 </Box>
                             </Paper>
                         </motion.div>
-                    </Grid2>
-                    <Grid2 size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
-                        <motion.div
-                            variants={slideIn("right", "tween", 0.2, 1)}
-                        >
-                            <Box sx={{ backgroundColor: 'transparent', flex: 1, height: { md: 500, xs: 300 } }}>
-                                <EarthCanvas />
+                    </Grid>
+
+                    {/* 3D Earth Canvas */}
+                    <Grid item xs={12} sm={12} md={6} lg={6} sx={{ display: "flex", justifyContent: "center", alignItems: "center",minWidth: 0, }}>
+                        <motion.div variants={useMemo(()=>slideIn("right", "tween", 0.2, 0.6))}>
+                            <Box
+                                sx={{
+                                    backgroundColor: "transparent",
+                                    flex: 1,
+                                    height: { xs: 300, sm: 350, md: 400, lg: 500 },  
+                                    width: { xs: "100%", sm: "100%", md: "700px", lg: "700px" }, 
+                                    maxWidth: "700px",  
+                                    overflow: "visible",
+                                }}
+                            >
+                                {MemoizedEarthCanvas}
                             </Box>
                         </motion.div>
-                    </Grid2>
-
-
-                </Grid2>
-
+                    </Grid>
+                </Grid>
             </Box>
         </div>
-
     );
 };
 

@@ -9,7 +9,7 @@ import { MotionTypography } from './motion components/MotionComponents';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 export default function AboutMe() {
     const textVariants = {
-        hidden: { opacity: 0, y: 100, },
+        hidden: { opacity: 0, y: 200, },
         visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
     };
 
@@ -43,7 +43,7 @@ export default function AboutMe() {
                             sx={{
                                 fontSize: { xs: '3.5vw', sm: '2.5vw', md: '1.3vw' },
                                 fontFamily: 'Roboto, Arial, sans-serif',
-                                color: 'gray',
+                                color: '#aaa6c3',
                                 paddingLeft: { xs: '5vw', sm: '10vw', md: '15vw' },
                                 paddingRight: { xs: '5vw', sm: '10vw', md: '15vw' },
                                 textAlign: 'center',
@@ -83,7 +83,7 @@ export default function AboutMe() {
                             sx={{
                                 fontSize: { xs: '3vw', sm: '2vw', md: '1.2vw' },
                                 fontFamily: 'Roboto, Arial, sans-serif',
-                                color: 'gray',
+                                color: '#aaa6c3',
                                 paddingY: 1
                             }}
                         >

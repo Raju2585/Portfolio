@@ -24,6 +24,8 @@ import {
   tripguide,
   threejs,
 } from "../assets";
+import TSBRS from "../assets/TSBRS.jpg";
+import PMS from "../assets/PMS.png";
 
 export const navLinks = [
   {
@@ -200,20 +202,20 @@ const projects = [
   {
     name: "Traffic Sign Board Recognition System",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A Traffic Sign Board Recognition System using CNN is a deep learning-based project aimed at automatically identifying and classifying traffic signs from images or real-time video feeds.",
     tags: [
       {
         name: "Python",
         color: "blue-text-gradient",
       }
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: TSBRS,
+    source_code_link: "https://github.com/Raju2585/Traffic_Sign_Board_Recognition",
   },
   {
     name: "PMS",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "A Patient Management System (PMS) is a software application designed to streamline the process of booking doctor appointments and managing patient records efficiently.Patients can schedule, modify, or cancel appointments with doctors.",
     tags: [
       {
         name: "React",
@@ -228,30 +230,30 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    image: PMS,
+    source_code_link: "https://github.com/Raju2585/PMS_Frontend",
   },
-  {
-    name: "Rock Paper Scissor Game",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "Javascript",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "HTML",
-        color: "green-text-gradient",
-      },
-      {
-        name: "CSS",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
-  },
+  // {
+  //   name: "Rock Paper Scissor Game",
+  //   description:
+  //     "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+  //   tags: [
+  //     {
+  //       name: "Javascript",
+  //       color: "blue-text-gradient",
+  //     },
+  //     {
+  //       name: "HTML",
+  //       color: "green-text-gradient",
+  //     },
+  //     {
+  //       name: "CSS",
+  //       color: "pink-text-gradient",
+  //     },
+  //   ],
+  //   image: tripguide,
+  //   source_code_link: "https://github.com/",
+  // },
 ];
 
 export { services, technologies, experiences, testimonials, projects };

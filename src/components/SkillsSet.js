@@ -57,7 +57,7 @@ const SkillSet = () => {
                         transition:
                         {
                             type:'spring',
-                            delay:index*0.2,
+                            delay:index*0.1,
                             ease: "easeOut"
                         }
                     }}

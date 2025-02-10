@@ -1,67 +1,14 @@
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Box, CardContent } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Typewriter } from 'react-simple-typewriter';
 import Grid from '@mui/material/Grid2';
 import { MotionTypography } from './motion components/MotionComponents';
-import img from './images/header-img.svg'
 import bg from "./images/herobg.png";
 import { CardCover } from '@mui/joy';
-import * as THREE from 'three';
-import { Computer } from '@mui/icons-material';
 import ComputersCanvas from './canvas/Computer';
-import { Canvas, useGraph } from '@react-three/fiber';
-import { useGLTF, OrbitControls, useFBX, useAnimations } from '@react-three/drei';
-import CanvasLoader from './canvas/Loader';
-import { Developer2, Developer_2 } from './canvas/Developer_2';
-import { Leva, useControls } from 'leva';
-import { Developer } from './canvas/Developer';
-import { Avatar } from './Avatar';
-import { Charecter } from './Charecter';
-import { Avatar2 } from './Avatar2';
-export default function Home() {
-    // const [animationName,setAnimationName]=useState("landing");
-    // const { scale, rotation, position, lightIntensity, ambientLightIntensity, spotLightIntensity, directionalLightIntensity } = useControls("Developer Settings", {
-    //     scale: { value: [3.5, 3.5, 3.5], min: 1, max: 50, step: 0.5 },
-    //     position: { value: [0, -3, 0], min: -50, max: 50, step: 1 },
-    //     rotation: { value: [0, 0, 0], step: 0.1 },
-    //     lightIntensity: { value: 1, min: 0, max: 10, step: 0.1 },
-    //     ambientLightIntensity: { value: 1.5, min: 0, max: 5, step: 0.1 },
-    //     spotLightIntensity: { value: 2, min: 0, max: 10, step: 0.1 },
-    //     directionalLightIntensity: { value: 4.3, min: 0, max: 10, step: 0.1 },
-    // });
-    // const { planePosition, planeRotation, planeScale, planeColor } = useControls("Plane Controls", {
-    //     planePosition: { value: [0.4, -3.5, -0.3], min: -10, max: 10, step: 0.1 },
-    //     planeRotation: { value: [-1.9, 0, 0], min: -Math.PI, max: Math.PI, step: 0.1 },
-    //     planeScale: { value: [2, 2, 10], min: 1, max: 10, step: 0.5 },
-    //     planeColor: "#1c1738",
-    // });
-    // useEffect(() => {
-    //     const saluteTimeout = setTimeout(() => {
-    //         setAnimationName("waving");
-    //     }, 3000); 
-    //     const idleTimeout = setTimeout(() => {
-    //         setAnimationName("idle");
-    //     }, 6000); 
-
-    //     return () => {
-    //         clearTimeout(saluteTimeout);
-    //         clearTimeout(idleTimeout);
-    //     };
-    // }, []);
-    // const getCameraPosition=()=>{
-    //     if(animationName==="landing")
-    //     {
-    //         return [0,2,5];
-    //     }
-    //     else if(animationName==="salute")
-    //     {
-    //         return [0,1.5,5];
-    //     }
-    //     else{
-    //         return [0,1,5];
-    //     }
-    // }
+export default function Home({setComputerLoaded}) {
+    const MemoizedComputer=useMemo(()=><ComputersCanvas />,[]);
     return (
         <Box sx={{ height: '100vh', width: '100%', position: 'relative', overflow: 'hidden' }}>
             <CardCover sx={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: -1 }}>
@@ -97,17 +44,23 @@ export default function Home() {
                             </motion.span>
                         </Box>
                         <MotionTypography
-                            textColor="white"
                             sx={{
                                 fontSize: { xs: '3vw', sm: '2.5vw', md: '2vw', lg: '1.3vw' },
-                                color: 'white',
+                                color: '#aaa6c3',
                                 paddingX: { xs: '2vw', sm: '4vw', md: '5vw', lg: '7vw' },
                             }}
                             marginTop={3}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            initial={{ 
+                                opacity: 0,
+                                y:150,
+
+                             }}
+                            animate={{ 
+                                opacity: 1 ,
+                                y:0,
+                            }}
                             transition={{
-                                duration: 3,
+                                duration: 0.8,
                                 delay: 1
                             }}
                         >
@@ -121,21 +74,7 @@ export default function Home() {
                     }}
                         size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
 
-                        <ComputersCanvas />
-                        {/* <Canvas  camera={{ position: getCameraPosition(),fov:120, near: 0.01, far: 1000 }}>
-                            <OrbitControls makeDefault enableDamping={true} enableZoom={true} zoomSpeed={0.5}  maxPolarAngle={Math.PI / 2} />
-                            <ambientLight intensity={ambientLightIntensity} />
-                            <directionalLight intensity={directionalLightIntensity} position={[5, 10, 5]} />
-                            <spotLight intensity={spotLightIntensity} position={[0, 10, 0]} angle={0.3} penumbra={1} />
-
-                            <Suspense fallback={<CanvasLoader />}>
-                                <Avatar animationName={animationName} rotation={rotation} scale={scale} position={position} />
-                                <mesh position={planePosition} rotation={planeRotation} scale={planeScale}>
-                                    <circleGeometry args={[2.5, 64]} />
-                                    <meshStandardMaterial  color={planeColor} side={THREE.DoubleSide} />
-                                </mesh>
-                            </Suspense>
-                        </Canvas> */}
+                        {MemoizedComputer}
                     </Grid>
                 </Grid>
             </CardContent>

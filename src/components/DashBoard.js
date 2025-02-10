@@ -12,14 +12,13 @@ import { MotionButton } from './motion components/MotionComponents';
 import { useRef, useState, useEffect } from 'react';
 import Home from './Home';
 import Project from './Projects';
-import shadows from '@mui/material/styles/shadows';
 import ContactForm from './ContactForm';
-import StarsCanvas from './canvas/Stars';
+import CanvasLoader from './canvas/Loader';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
 
-export function DrawerAppBar(props) {
+export function DashBoard(props) {
     const { window: getWindow } = props;
     const [mobileOpen, setMobileOpen] = useState(false);
     const aboutRef = useRef(null);
@@ -189,7 +188,7 @@ export function DrawerAppBar(props) {
                 </nav>
             </Box>
             <div ref={homeRef}>
-                <Home />
+                <Home/>
             </div>
             {/* About Me Section */}
             <div
@@ -199,7 +198,7 @@ export function DrawerAppBar(props) {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    position: "relative", 
+                    position: "relative",
                     zIndex: 1
                 }}
             >
@@ -208,19 +207,18 @@ export function DrawerAppBar(props) {
             <div
                 ref={projectsRef}
                 style={{
-                    display:'flex',
-                    alignItems:'center',
+                    display: 'flex',
+                    alignItems: 'center',
                     backgroundColor: '#050816',
-                    position: "relative", 
+                    position: "relative",
                     zIndex: 1
                 }}
             >
                 <Project />
             </div>
-            <div ref={contactRef} style={{   position: "relative", width: "100%", backgroundColor: "#050816" }}>
-                <ContactForm />
+            <div ref={contactRef} style={{ position: "relative", width: "100%", backgroundColor: "#050816", display: 'flex', }}>
+                <ContactForm/>
             </div>
-
         </>
     );
 }
