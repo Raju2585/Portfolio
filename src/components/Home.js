@@ -69,8 +69,10 @@ export default function Home({setComputerLoaded}) {
                         </MotionTypography>
                     </Grid>
                     <Grid sx={{
-                        width: "60vw",
-                        height: "90vh"
+                        width: "100%",
+                        height: "auto",
+                        maxWidth: { xs: "90vw", sm: "80vw", md: "60vw", lg: "50vw" },
+                        minHeight: { xs: "30vh", sm: "70vh", md: "90vh" },
                     }}
                         size={{ xs: 12, sm: 12, md: 6, lg: 6 }}>
 
