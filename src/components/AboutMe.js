@@ -8,7 +8,7 @@ import { MotionTypography } from './motion components/MotionComponents';
 import { faL } from '@fortawesome/free-solid-svg-icons';
 export default function AboutMe({contactRef}) {
     const textVariants = {
-        hidden: { opacity: 0, y: 200, },
+        hidden: { opacity: 0, y: 160, },
         visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
     };
 
@@ -93,26 +93,6 @@ export default function AboutMe({contactRef}) {
                             <a target='blank' style={{color:'#8925db',textDecoration:'none'}} href='https://www.instagram.com/ra_ju439?igsh=OHV5dHZkdnZkMm9v
                             has context menu'>Instagram</a>. I'm open to job opportunities where I can apply my skills and grow—let's <a style={{color:'#8925db',textDecoration:'none'}} href=''>connect!</a>
                         </MotionTypography>
-                        {/* <Typography
-                            variant='body1'
-                            sx={{
-                                fontSize: { xs: '3vw', sm: '2vw', md: '1.2vw' },
-                                fontFamily: 'Roboto, Arial, sans-serif',
-                                color: 'gray',
-                                paddingY: 1
-                            }}>
-                            I’m constantly learning and staying updated with the latest trends in Web Development and Programming. I also enjoy sharing the knowledge I’ve gained through my projects and experiences to help others in the Developer Community. Feel free to connect with me on LinkedIn or Instagram, where I post useful content about development and technology.
-                        </Typography>
-                        <Typography
-                            variant='body1'
-                            sx={{
-                                fontSize: { xs: '3vw', sm: '2vw', md: '1.2vw' },
-                                fontFamily: 'Roboto, Arial, sans-serif',
-                                color: 'gray',
-                                paddingY: 1
-                            }}>
-                            I’m excited to explore job opportunities where I can apply my skills, learn from industry professionals, and grow as a Full-Stack Developer. If you have an opportunity that matches my potential, I’d love to hear from you!
-                        </Typography> */}
                     </Box>
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 6 }}>
