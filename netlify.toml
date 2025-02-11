@@ -1,2 +1,4 @@
 [build]
   GO_VERSION = "1.20"
+[build.environment]
+NODE_VERSION = "22.13.1"
