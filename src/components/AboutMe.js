@@ -3,9 +3,7 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import '@fontsource/roboto';
 import SkillSet from './SkillsSet';
-import { motion } from "framer-motion";
 import { MotionTypography } from './motion components/MotionComponents';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 export default function AboutMe({contactRef}) {
     const textVariants = {
         hidden: { opacity: 0, y: 160, },

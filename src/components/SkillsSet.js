@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faPython,

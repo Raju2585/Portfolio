@@ -14,7 +14,6 @@ import Home from './Home';
 import Project from './Projects';
 import ContactForm from './ContactForm';
 import { motion } from 'framer-motion';
-import { Avatar, Modal } from '@mui/material';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
