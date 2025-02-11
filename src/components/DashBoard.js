@@ -6,7 +6,7 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
-import logo from './images/logo.jpg';
+import profilePic from '../assets/profilePic.png';
 import AboutMe from './AboutMe';
 import { MotionButton } from './motion components/MotionComponents';
 import { useRef, useState, useEffect } from 'react';
@@ -14,6 +14,7 @@ import Home from './Home';
 import Project from './Projects';
 import ContactForm from './ContactForm';
 import { motion } from 'framer-motion';
+import { Avatar, Modal } from '@mui/material';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Projects', 'Contact'];
@@ -26,6 +27,7 @@ export function DashBoard(props) {
     const projectsRef = useRef(null);
     const contactRef = useRef(null);
     const [isScrolled, setScrolled] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
@@ -64,12 +66,7 @@ export function DashBoard(props) {
         };
     }, []);
 
-
     const container = getWindow !== undefined ? () => getWindow().document.body : undefined;
-    const navVariants = {
-        hidden: { opacity: 0, y: -50 },
-        visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.1 } }
-    };
     return (
         <>
             <Box sx={{ display: 'flex' }}>
@@ -82,6 +79,7 @@ export function DashBoard(props) {
                         backgroundColor: isScrolled ? 'transparent' : '#000000',
                         color: 'white',
                         transition: 'background-color 0.3s ease-in-out',
+                        paddingX: '5vw'
                     }}
                 >
                     <Toolbar>
@@ -94,13 +92,25 @@ export function DashBoard(props) {
                         >
                             <MenuIcon />
                         </IconButton>
+                        <img
+                            src={profilePic}
+                            alt="Profile"
+                            onClick={() => setOpenModal(true)}
+                            style={{
+                                width: 36,
+                                height: 36,
+                                border: '1px solid #000',
+                                borderRadius: '50%',
+                                cursor: 'pointer'
+                            }}
+                        />
                         <MotionButton
                             initial={{ y: -50 }}
                             animate={{ y: 0 }}
                             transition={{
                                 type: 'spring',
-                                stiffness: 100, 
-                                damping: 15, 
+                                stiffness: 100,
+                                damping: 15,
                                 ease: "easeOut"
                             }}
                             sx={{
@@ -114,20 +124,12 @@ export function DashBoard(props) {
                                 textTransform: 'none',
                                 padding: 0,
                                 fontWeight: 'bold',
-                                willChange: 'transform', 
+                                willChange: 'transform',
                                 transform: 'translateZ(0)',
                             }}
                         >
-                            {/* <img
-                                src={logo}
-                                alt="Logo"
-                                style={{
-                                    width: 36,
-                                    height: 36,
-                                    border: '1px solid #000',
-                                    borderRadius: '50%',
-                                }}
-                            /> */}
+
+                            {/* <Avatar src='../assets/profilePic.png' /> */}
                             SANTHIRAJU MERLA
                         </MotionButton>
                         <Box
@@ -161,18 +163,18 @@ export function DashBoard(props) {
                                     }}
                                     transition={{
                                         type: 'spring',
-                                        stiffness: 100, 
-                                        damping: 15, 
+                                        stiffness: 100,
+                                        damping: 15,
                                         ease: "easeOut",
-                                        duration:0.5
-                                        //delay: index === 0 ? 0.2 : index * 0.3,
+                                        duration: 0.5,
+                                        delay: index === 0 ? 0.2 : index * 0.3,
                                     }}
                                     sx={{
                                         color: 'white',
                                         fontSize: 17,
                                         fontWeight: 'bold',
                                         margin: 3,
-                                        willChange: 'transform', 
+                                        willChange: 'transform',
                                         transform: 'translateZ(0)',
                                     }}
                                 >
@@ -198,6 +200,48 @@ export function DashBoard(props) {
                     >
                     </Drawer>
                 </nav>
+                <Modal open={openModal} onClose={() => setOpenModal(false)}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '280px',
+                            height: '350px',
+                            backgroundColor:'transparent'
+                        }}
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.5 }}
+                            transition={{ type: "spring", stiffness: 100, damping: 15 }}
+                            style={{
+                                backgroundColor: 'transparent',
+                                borderRadius: '10px',
+                                maxWidth: '300px',
+                                maxHeight: '350px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <img
+                                src={profilePic}
+                                alt="Profile Large"
+                                style={{
+                                    maxWidth: '300px',
+                                    maxHeight: '350px',
+                                    borderRadius: '10px',
+                                }}
+                            />
+                        </motion.div>
+                    </Box>
+                </Modal>
+
             </Box>
             <div ref={homeRef}>
                 <Home />
@@ -214,7 +258,7 @@ export function DashBoard(props) {
                     zIndex: 1
                 }}
             >
-                <AboutMe />
+                <AboutMe contactRef={contactRef} />
             </div>
             <div
                 ref={projectsRef}

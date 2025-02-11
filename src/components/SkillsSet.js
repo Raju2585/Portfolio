@@ -61,7 +61,7 @@ const SkillSet = () => {
                             ease: "easeOut"
                         }
                     }}
-                    viewport={{ once: false, amount: 0.5 }}
+                    viewport={{ once: false, amount: 0.25 }}
                     whileHover={{
                         scale: 1.1,
                         rotate: 1.5,

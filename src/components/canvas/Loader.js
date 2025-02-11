@@ -1,11 +1,12 @@
+import { Box, CircularProgress } from "@mui/material";
 import { Html, useProgress } from "@react-three/drei";
 import { useMemo } from "react";
 
 const CanvasLoader = () => {
-  const { progress } = useProgress(); // ✅ Correctly getting progress
+  // const { progress } = useProgress(); // ✅ Correctly getting progress
 
-  // ✅ Memoizing the fixed progress value
-  const fixedProgress = useMemo(() => progress.toFixed(2), [progress]);
+  // // ✅ Memoizing the fixed progress value
+  // const fixedProgress = useMemo(() => progress.toFixed(2), [progress]);
   return (
     <Html
       as='div'
@@ -26,7 +27,7 @@ const CanvasLoader = () => {
           marginTop: 40,
         }}
       >
-        {fixedProgress}%
+        <h3 color="#8925db">Loading....</h3>
       </p>
     </Html>
   );

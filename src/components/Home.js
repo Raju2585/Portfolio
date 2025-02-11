@@ -47,7 +47,7 @@ export default function Home({setComputerLoaded}) {
                             sx={{
                                 fontSize: { xs: '3vw', sm: '2.5vw', md: '2vw', lg: '1.3vw' },
                                 color: '#aaa6c3',
-                                paddingX: { xs: '2vw', sm: '4vw', md: '5vw', lg: '7vw' },
+                                paddingLeft: { xs: '2vw', sm: '4vw', md: '5vw', lg: '7vw' },
                             }}
                             marginTop={3}
                             initial={{ 

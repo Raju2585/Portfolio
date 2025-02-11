@@ -1,13 +1,12 @@
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { Container } from '@mui/material';
 import '@fontsource/roboto';
 import SkillSet from './SkillsSet';
 import { motion } from "framer-motion";
 import { MotionTypography } from './motion components/MotionComponents';
 import { faL } from '@fortawesome/free-solid-svg-icons';
-export default function AboutMe() {
+export default function AboutMe({contactRef}) {
     const textVariants = {
         hidden: { opacity: 0, y: 200, },
         visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: "easeOut" } }
@@ -87,7 +86,12 @@ export default function AboutMe() {
                                 paddingY: 1
                             }}
                         >
-                            I'm a Full-Stack Web Developer passionate about building and managing web applications. I enjoy creating user-friendly solutions, staying updated with the latest trends, and sharing my knowledge with the developer community. Check out my projects in the Projects section, and connect with me on LinkedIn or Instagram. I'm open to job opportunities where I can apply my skills and grow—let's connect!
+                            I'm a Full-Stack Web Developer passionate about building and managing web applications.
+                            I enjoy creating user-friendly solutions, staying updated with the latest trends,
+                            and sharing my knowledge with the developer community. Check out my projects in the Projects section,
+                            and connect with me on <a style={{color:'#8925db',textDecoration:'none'}} target='blank' href='https://www.linkedin.com/in/santhiraju-merla-76143b253/'>LinkedIn</a> or 
+                            <a target='blank' style={{color:'#8925db',textDecoration:'none'}} href='https://www.instagram.com/ra_ju439?igsh=OHV5dHZkdnZkMm9v
+                            has context menu'>Instagram</a>. I'm open to job opportunities where I can apply my skills and grow—let's <a style={{color:'#8925db',textDecoration:'none'}} href=''>connect!</a>
                         </MotionTypography>
                         {/* <Typography
                             variant='body1'
